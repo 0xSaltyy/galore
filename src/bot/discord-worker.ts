@@ -10,6 +10,8 @@ import {
 } from "discord.js";
 import { createClient } from "@supabase/supabase-js";
 
+import { env, httpUrlEnv } from "../lib/env";
+
 loadEnvConfig(process.cwd());
 
 const required = [
@@ -31,9 +33,17 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
+const supabaseUrl = httpUrlEnv("NEXT_PUBLIC_SUPABASE_URL");
+const supabaseServiceRoleKey = env("SUPABASE_SERVICE_ROLE_KEY");
+
+if (!supabaseUrl || !supabaseServiceRoleKey) {
+  console.error("[galore] Supabase configuration is invalid. No secret values were printed.");
+  process.exit(1);
+}
+
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  supabaseUrl,
+  supabaseServiceRoleKey,
   {
     auth: {
       autoRefreshToken: false,

@@ -179,6 +179,48 @@ Do not put `DISCORD_BOT_TOKEN` in Vercel for the normal deployment. The website 
 
 `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_DISCORD_INVITE_URL`, and `DISCORD_REDIRECT_URI` must be production values on Vercel. Do not leave them as `localhost`.
 
+Expected Vercel value formats:
+
+| Variable | Expected value |
+| --- | --- |
+| `DISCORD_CLIENT_ID` | Discord application client ID, numeric snowflake |
+| `DISCORD_CLIENT_SECRET` | Discord OAuth client secret |
+| `DISCORD_REDIRECT_URI` | `https://YOUR-VERCEL-DOMAIN.vercel.app/api/auth/discord/callback` |
+| `DISCORD_GUILD_ID` | Discord server ID, numeric snowflake |
+| `DISCORD_ALLOWED_USER_IDS` | Comma-separated Discord user IDs |
+| `DISCORD_STAFF_ROLE_IDS` | Comma-separated Discord role IDs |
+| `DISCORD_STAFF_WEBHOOK_URL` | Full Discord webhook URL for staff notifications |
+| `NEXT_PUBLIC_SUPABASE_URL` | Full Supabase project URL, like `https://YOUR-PROJECT-REF.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key |
+| `SESSION_SECRET` | Random string, at least 32 characters |
+| `NEXT_PUBLIC_SITE_URL` | Full Vercel site origin, like `https://YOUR-VERCEL-DOMAIN.vercel.app` |
+| `NEXT_PUBLIC_DISCORD_INVITE_URL` | Full invite URL, like `https://discord.gg/YOUR-INVITE-CODE` |
+
+Do not wrap values in quotes in the Vercel dashboard.
+
+### Vercel Troubleshooting
+
+If Vercel logs show this error:
+
+```text
+Invalid supabaseUrl: Must be a valid HTTP or HTTPS URL.
+```
+
+Check `NEXT_PUBLIC_SUPABASE_URL` in Vercel. It must be the Supabase project URL, not the anon key, service role key, project reference, API key name, or a placeholder. The value should look like:
+
+```text
+https://YOUR-PROJECT-REF.supabase.co
+```
+
+The app now fails gracefully when Supabase URL config is missing or invalid: pages render with empty live data instead of crashing, and server logs print only the variable name and problem. Secret values are never printed. You should still fix the Vercel env var so live data, admin data, forms, and events can work.
+
+If OAuth redirects fail in production, confirm:
+
+- `NEXT_PUBLIC_SITE_URL` is `https://YOUR-VERCEL-DOMAIN.vercel.app`
+- `DISCORD_REDIRECT_URI` is `https://YOUR-VERCEL-DOMAIN.vercel.app/api/auth/discord/callback`
+- The exact same redirect URI is added in Discord Developer Portal -> OAuth2 -> Redirects
+
 ## Discord OAuth Production Setup
 
 The app uses this OAuth callback route:

@@ -2,7 +2,7 @@ import "server-only";
 
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-import { env } from "@/lib/env";
+import { env, httpUrlEnv, warnEnvIssue } from "@/lib/env";
 
 let adminClient: SupabaseClient | null | undefined;
 let publicClient: SupabaseClient | null | undefined;
@@ -14,15 +14,32 @@ const options = {
   },
 };
 
+function createSupabaseClient(keyName: string) {
+  const url = httpUrlEnv("NEXT_PUBLIC_SUPABASE_URL");
+  const key = env(keyName);
+
+  if (!url || !key) {
+    if (!key) {
+      warnEnvIssue(keyName, "is missing");
+    }
+
+    return null;
+  }
+
+  try {
+    return createClient(url, key, options);
+  } catch {
+    warnEnvIssue("Supabase", `client is disabled because ${keyName} or NEXT_PUBLIC_SUPABASE_URL is invalid`);
+    return null;
+  }
+}
+
 export function getSupabaseAdminClient() {
   if (adminClient !== undefined) {
     return adminClient;
   }
 
-  const url = env("NEXT_PUBLIC_SUPABASE_URL");
-  const key = env("SUPABASE_SERVICE_ROLE_KEY");
-
-  adminClient = url && key ? createClient(url, key, options) : null;
+  adminClient = createSupabaseClient("SUPABASE_SERVICE_ROLE_KEY");
   return adminClient;
 }
 
@@ -31,10 +48,7 @@ export function getSupabasePublicClient() {
     return publicClient;
   }
 
-  const url = env("NEXT_PUBLIC_SUPABASE_URL");
-  const key = env("NEXT_PUBLIC_SUPABASE_ANON_KEY");
-
-  publicClient = url && key ? createClient(url, key, options) : null;
+  publicClient = createSupabaseClient("NEXT_PUBLIC_SUPABASE_ANON_KEY");
   return publicClient;
 }
 
