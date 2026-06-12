@@ -1,26 +1,37 @@
 {
-  "name": "vc-soon",
+  "name": "galore",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check:env": "tsx scripts/check-env.ts",
+    "dev:all": "concurrently -k -n web,bot -c blue,magenta \"npm run dev\" \"npm run bot:dev\"",
+    "bot:dev": "tsx src/bot/discord-worker.ts",
+    "bot:start": "tsx src/bot/discord-worker.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.1",
+    "discord.js": "^14.26.4",
+    "lucide-react": "^1.17.0",
     "next": "16.2.9",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^10.0.3",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
+    "tsx": "^4.22.4",
     "typescript": "^5"
   }
 }
