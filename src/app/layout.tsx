@@ -21,11 +21,10 @@ export const metadata: Metadata = {
     default: "# galore",
     template: "%s | # galore",
   },
-  description:
-    "late-night calls, cool people, live rooms.",
+  description: "# galore",
   openGraph: {
     title: "# galore",
-    description: "late-night calls, cool people, live rooms.",
+    description: "# galore",
     images: [
       {
         url: "/images/galore-profile.jpeg",

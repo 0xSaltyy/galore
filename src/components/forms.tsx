@@ -42,13 +42,13 @@ function FormShell({
     if (response.ok) {
       event.currentTarget.reset();
       setState("sent");
-      setMessage("Submitted. Staff will review it from the dashboard.");
+      setMessage("submitted");
       return;
     }
 
     const data = await response.json().catch(() => null);
     setState("error");
-    setMessage(data?.error ?? "Could not submit. Check the form and try again.");
+    setMessage(data?.error ?? "error");
   }
 
   return (
@@ -122,7 +122,7 @@ export function StaffApplicationForm() {
   return (
     <FormShell
       endpoint="/api/applications"
-      submitLabel="Submit application"
+      submitLabel="submit"
       fields={[
         { name: "discordUsername", label: "Discord username", required: true },
         { name: "discordUserId", label: "Discord user ID", required: true },
@@ -162,7 +162,7 @@ export function ReportForm() {
   return (
     <FormShell
       endpoint="/api/reports"
-      submitLabel="Submit to staff"
+      submitLabel="submit"
       fields={[
         {
           name: "type",

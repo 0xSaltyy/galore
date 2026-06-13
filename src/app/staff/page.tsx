@@ -17,9 +17,8 @@ export default async function StaffPage() {
     <SiteShell>
       <PageSection>
         <PageHeading
-          eyebrow="inner circle"
-          title="roster."
-          description="the people with keys to the room."
+          eyebrow="# galore"
+          title="staff"
         />
         <div className="space-y-8">
           {groups.map((group) => (

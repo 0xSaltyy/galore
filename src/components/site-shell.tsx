@@ -27,10 +27,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             <span className="font-mono text-[12px] font-semibold uppercase tracking-[0.18em] text-[#d8d5cf]">
               # galore
             </span>
-            <span className="hidden h-px w-9 bg-[#3a3a3d] sm:block" />
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-[#666762] group-hover:text-[#9b9b96] sm:block">
-              private rooms
-            </span>
           </Link>
           <div className="hidden items-center gap-1 lg:flex">
             <NavLinks />
@@ -43,7 +39,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </header>
       <main className="relative z-10">{children}</main>
       <footer className="relative z-10 border-t border-[#18181a] px-4 py-7 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[#555550]">
-        # galore / private voice spaces / live rooms
+        # galore
       </footer>
     </div>
   );
@@ -60,13 +56,15 @@ export function PageHeading({
 }: {
   eyebrow: string;
   title: string;
-  description: string;
+  description?: string;
 }) {
   return (
     <div className="mb-7 max-w-3xl">
       <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.34em] text-[#8c8e8b]">{eyebrow}</p>
       <h1 className="text-3xl font-medium tracking-[-0.06em] text-[#f0ede7] sm:text-5xl">{title}</h1>
-      <p className="mt-3 max-w-2xl text-sm leading-6 text-[#8d8b85] sm:text-base">{description}</p>
+      {description ? (
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#8d8b85] sm:text-base">{description}</p>
+      ) : null}
     </div>
   );
 }

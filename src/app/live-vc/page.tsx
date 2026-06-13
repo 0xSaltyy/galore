@@ -15,9 +15,8 @@ export default async function LiveVcPage() {
     <SiteShell>
       <PageSection>
         <PageHeading
-          eyebrow="live now"
-          title="private rooms."
-          description="real voice sessions from the server. quiet when empty, alive when people are in."
+          eyebrow="# galore"
+          title="rooms"
         />
         <VoiceChannelList initialChannels={channels} initialStats={stats} />
       </PageSection>

@@ -24,15 +24,14 @@ export default async function AdminPage() {
       <PageSection>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <PageHeading
-            eyebrow="Dashboard"
-            title="Staff control panel"
-            description={`Signed in as ${session.displayName}.`}
+            eyebrow={session.displayName}
+            title="admin"
           />
           <a
             href="/api/auth/logout"
             className="rounded-md border border-[#2a2a30] bg-[#101014] px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#aeb0b6] hover:border-[#4a3a40] hover:text-white"
           >
-            Log out
+            logout
           </a>
         </div>
         <AdminDashboard initialSummary={summary} />

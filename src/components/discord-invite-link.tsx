@@ -9,17 +9,15 @@ export function DiscordInviteLink({ compact = false }: { compact?: boolean }) {
   const invite = getDiscordInviteConfig();
 
   if (!invite.ok) {
-    const label = invite.error.includes("missing") ? "Invite env missing" : "Invite env invalid";
-
     return (
       <span
         aria-disabled="true"
-        aria-label={invite.error}
-        title={invite.error}
-        className={`${baseClass} cursor-not-allowed border-[#35282b] bg-[#100d0e] text-[#bda5aa]`}
+        aria-label="Discord invite unavailable"
+        title="Discord invite unavailable"
+        className={`${baseClass} cursor-not-allowed border-[#252528] bg-[#08090a]/70 text-[#6f706b] opacity-70`}
       >
         <Signal className="size-3.5" aria-hidden="true" />
-        {compact ? label.replace(" env", "") : label}
+        {compact ? "" : "enter"}
       </span>
     );
   }

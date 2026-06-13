@@ -10,9 +10,8 @@ export default function ApplicationsPage() {
     <SiteShell>
       <PageSection>
         <PageHeading
-          eyebrow="Applications"
-          title="Staff application"
-          description="Apply with your Discord details, availability, moderation judgment, and previous experience."
+          eyebrow="# galore"
+          title="apply"
         />
         <StaffApplicationForm />
       </PageSection>

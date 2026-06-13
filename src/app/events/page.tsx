@@ -16,13 +16,12 @@ export default async function EventsPage() {
     <SiteShell>
       <PageSection>
         <PageHeading
-          eyebrow="Events"
-          title="Upcoming server events"
-          description="Late calls, music rooms, games, movies, and structured debates pulled from Supabase."
+          eyebrow="# galore"
+          title="events"
         />
         {events.length === 0 ? (
-          <div className="rounded-md border border-dashed border-[#1d1d22] bg-[#080809] px-4 py-8 text-sm leading-6 text-[#8a8b90]">
-            No upcoming events are published yet.
+          <div className="rounded-md border border-dashed border-[#1d1d22] bg-[#080809] px-4 py-8 font-mono text-[10px] uppercase tracking-[0.18em] text-[#555651]">
+            empty
           </div>
         ) : (
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">

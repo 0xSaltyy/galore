@@ -53,19 +53,19 @@ export function VoiceChannelList({
   return (
     <div className="space-y-5">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Total members" value={stats.totalMembers} icon={Radio} tone="zinc" />
-        <StatCard label="Online" value={stats.onlineMembers} icon={Volume2} tone="blue" />
-        <StatCard label="Currently in VC" value={totalInVoice} icon={Headphones} tone="red" />
-        <StatCard label="Open public VCs" value={stats.openPublicVcs} icon={Mic} tone="zinc" />
+        <StatCard label="members" value={stats.totalMembers} icon={Radio} tone="zinc" />
+        <StatCard label="online" value={stats.onlineMembers} icon={Volume2} tone="blue" />
+        <StatCard label="in vc" value={totalInVoice} icon={Headphones} tone="red" />
+        <StatCard label="open rooms" value={stats.openPublicVcs} icon={Mic} tone="zinc" />
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3 border border-[#1b1b1d] bg-[#070708] px-4 py-3">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#747571]">
           <span className="mr-2 inline-flex items-center gap-1.5 text-[#aeb4b8]">
             <Circle className="size-2 fill-current" aria-hidden="true" />
-            live now
+            live
           </span>
-          Polling every 10s / last sync{" "}
+          sync{" "}
           <span className="text-[#d5d2cb]">{lastUpdated.toLocaleTimeString()}</span>
         </p>
         <button
@@ -74,17 +74,13 @@ export function VoiceChannelList({
           className="inline-flex h-8 items-center gap-2 border border-[#2a2a2d] bg-[#0a0a0b] px-3 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c7c5bd] transition hover:border-[#666b70]"
         >
           <RefreshCcw className={`size-3.5 ${loading ? "animate-spin" : ""}`} aria-hidden="true" />
-          Refresh
+          refresh
         </button>
       </div>
 
       {channels.length === 0 ? (
-        <div className="border border-dashed border-[#242427] bg-[#050505] px-4 py-8 text-sm leading-6 text-[#898782]">
-          No live voice data yet. Start the Discord bot with{" "}
-          <code className="border border-[#27272a] bg-[#0d0d0e] px-1.5 py-0.5 font-mono text-[12px] text-[#d5d2cb]">
-            npm run bot:dev
-          </code>{" "}
-          and join a voice channel.
+        <div className="border border-dashed border-[#242427] bg-[#050505] px-4 py-8 font-mono text-[10px] uppercase tracking-[0.18em] text-[#555651]">
+          no voice data
         </div>
       ) : (
         <div className="space-y-3">
@@ -104,7 +100,7 @@ export function VoiceChannelList({
                   {channel.members.length > 0 ? (
                     <span className="inline-flex items-center gap-1 border border-[#303236] bg-[#0b0d0f] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[#aeb4b8]">
                       <Circle className="size-1.5 fill-current" aria-hidden="true" />
-                      Live
+                      live
                     </span>
                   ) : null}
                 </div>
@@ -121,7 +117,7 @@ export function VoiceChannelList({
             {channel.members.length === 0 ? (
               <div className="px-4 py-5">
                 <div className="border border-dashed border-[#1f1f22] bg-[#050505] px-3 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-[#555651]">
-                  empty room / quiet
+                  empty
                 </div>
               </div>
             ) : (
@@ -138,7 +134,7 @@ export function VoiceChannelList({
                           <StatusDot status={member.status} />
                           <p className="truncate text-sm font-medium tracking-[-0.02em] text-[#dedbd4]">{member.displayName}</p>
                           <span className="border border-[#242427] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[#73746f]">
-                            Member
+                            member
                           </span>
                         </div>
                         <p className="font-mono text-[10px] text-[#5b5c57]">{member.userId}</p>

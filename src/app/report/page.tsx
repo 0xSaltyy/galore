@@ -10,9 +10,8 @@ export default function ReportPage() {
     <SiteShell>
       <PageSection>
         <PageHeading
-          eyebrow="Moderation"
-          title="Report or ban appeal"
-          description="Submissions go to Supabase and notify staff through the configured Discord webhook."
+          eyebrow="# galore"
+          title="reports"
         />
         <ReportForm />
       </PageSection>

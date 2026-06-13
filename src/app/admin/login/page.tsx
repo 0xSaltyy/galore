@@ -19,16 +19,15 @@ export default async function AdminLoginPage() {
     <SiteShell>
       <PageSection>
         <PageHeading
-          eyebrow="Admin"
-          title="Discord staff login"
-          description="Dashboard access is limited to configured Discord user IDs, staff role IDs, or staff rows in Supabase."
+          eyebrow="# galore"
+          title="admin"
         />
         <a
           href={DISCORD_OAUTH_START_PATH}
           className="inline-flex h-10 items-center gap-2 rounded-md border border-[#34343a] bg-[#101014] px-4 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-[#d3d4d8] transition hover:border-[#4a3a40] hover:bg-[#141418]"
         >
           <LogIn className="size-3.5" aria-hidden="true" />
-          Continue with Discord
+          discord
         </a>
       </PageSection>
     </SiteShell>
